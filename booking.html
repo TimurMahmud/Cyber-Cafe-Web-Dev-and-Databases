@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<head>
+   <title>Booking</title>
+   <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="style.css">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <!-- Ciaran O'Brien, people playing arcade games,unsplash,Published on July 25, 2018, https://unsplash.com/photos/ihb1YmHlpuQ -->
+</head>
+<body>
+   <header>
+      <div class="wrapper">
+         <div class="logo">
+            <img src="images/logo.png" alt="">
+         </div>
+         <ul class="navigation">
+            <a href="home.html">
+               <li>Home</li>
+            </a>
+            <a href="about.html">
+               <li>About</li>
+            </a>
+            <a href="contact.html">
+               <li>Contact</li>
+            </a>
+            <a href="booking.html">
+               <li>Booking</li>
+            </a>
+            <a href="login.html">
+               <li>Login</li>
+            </a>
+            <a href="register.html">
+               <li>Register</li>
+            </a>
+         </ul>
+      </div>
+      <div class="title">
+         <div class = "title-wrapper">
+            <h1>
+               Bookings
+            </h1>
+         </div>
+      </div>
+   </header>
+   <main>
+      <p>Book now!</p>
+      <!-- *influenced by
+         *    Title: Lab 06 - Sample solution
+         *    Author: City University London
+         *    Date: 2021
+         *    Availability: https://moodle.city.ac.uk/mod/folder/view.php?id=1824172
+         -->
+      <form method="post" action="booking.php" id="bookingEnquiry">
+         <div class="container">
+            <fieldset class="fields" id="fieldset1">
+               <div class="inputform">
+                  <!--email -->
+                  <label for="email"><b>Email</b></label>
+                  <input type="text" placeholder="Enter email" name="email" id="email" maxlength="20" required>
+               </div>
+               <div class="inputform">
+                  <!-- Message -->
+                  <label for="bookingEnquiry"><b>Booking Enquiry(255 characters only)</b></label>
+                  <input type="text" placeholder="Type your booking enquiry" name="bookingEnquiry" maxlength="255" id="bookingEnquiry" required>
+               </div>
+               <!-- booking button -->
+               <div class="inputform">                    
+                  <button type="submit" class="bookingbtn" id="bookingBtn">Enquire</button>
+               </div>
+            </fieldset>
+         </div>
+      </form>
+   </main>
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE html>
+<head>
+   <title>Register</title>
+   <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="style.css">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <!-- Ciaran O'Brien, people playing arcade games,unsplash,Published on July 25, 2018, https://unsplash.com/photos/ihb1YmHlpuQ -->
+</head>
+<body>
+   <header>
+      <div class="wrapper">
+         <div class="logo">
+            <img src="images/logo.png" alt="">
+         </div>
+         <ul class="navigation">
+            <a href="home.html">
+               <li>Home</li>
+            </a>
+            <a href="about.html">
+               <li>About</li>
+            </a>
+            <a href="contact.html">
+               <li>Contact</li>
+            </a>
+            <a href="booking.html">
+               <li>Booking</li>
+            </a>
+            <a href="login.html">
+               <li>Login</li>
+            </a>
+            <a href="register.html">
+               <li>Register</li>
+            </a>
+         </ul>
+      </div>
+      <div class="title">
+         <div class = "title-wrapper">
+            <h1>
+               Register
+            </h1>
+         </div>
+      </div>
+   </header>
+   <main>
+      <form method="post" action="registration.php" id="register-form">
+         <div class="container">
+            <fieldset class="fields" id="fieldset1">
+               <h2>Register</h2>
+               <p>Please fill in this form to create an account:</p>
+               <hr>
+               <!-- *influenced by
+                  *    Title: Lab 06 - Sample solution
+                  *    Author: City University London
+                  *    Date: 2021
+                  *    Availability: https://moodle.city.ac.uk/mod/folder/view.php?id=1824172
+                  -->
+               <div class="inputform">
+                  <!--username -->
+                  <label for="username"><b>Username</b></label>
+                  <input type="text" placeholder="Enter username" name="username" id="username" maxlength="20" required>
+               </div>
+               <div class="inputform">
+                  <!-- Enter first and last name -->
+                  <label for="firstname"><b>First name</b></label>
+                  <input type="text" placeholder="Enter your first name" name="firstname" maxlength="30" id="firstname" required>
+               </div>
+               <div class="inputform">
+                  <label for="lastname"><b>Last name</b></label>
+                  <input type="text" placeholder="Enter your last name" name="lastname" maxlength="30" id="lastname" required>
+               </div>
+               <div class="inputform">
+                  <!--number -->
+                  <label for="phone"><b>Mobile phone number</b></label>
+                  <input type="number" placeholder="Enter your mobile phone number" name="phone" maxlength="11" id="phone" required>
+               </div>
+               <div class="inputform">
+                  <!--email address -->
+                  <label for="email"><b>Email</b></label>
+                  <input type="text" placeholder="Enter email" name="email" id="email" maxlength="40" required>                   
+               </div>
+               <div class="inputform">
+                  <!--password -->
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter password" name="psw" id="psw" maxlength="20" required>                            
+               </div>
+               <!-- register button -->
+               <div class="inputform">
+                  <button type="submit" class="registerbtn" id="regBtn">Register</button>
+               </div>
+            </fieldset>
+         </div>
+      </form>
+   </main>
+</body>
+</html>
+

@@ -1,0 +1,477 @@
+
+/* SECTION 1 CREATE TABLE STATEMENTS */
+
+create table adbs893Customer( 
+Customer_ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+
+create table adbs893Member ( 
+Member_ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+First_Name CHAR(255),
+Last_Name CHAR(255),
+User_Name CHAR(255) UNIQUE,
+Phone_Number INTEGER(15),
+Email_Address VARCHAR(255) UNIQUE,
+Password VARCHAR(255),  
+DOB DATE,
+CustomerCustomer_ID INTEGER(255),
+AddressPostcode VARCHAR(255),
+AddressDoor_Number VARCHAR(255),
+FOREIGN KEY (CustomerCustomer_ID) REFERENCES adbs893Customer(Customer_ID),
+FOREIGN KEY (AddressPostcode) REFERENCES adbs893Address(Postcode),
+FOREIGN KEY (AddressDoor_Number) REFERENCES adbs893Address(Door_Number)
+);
+
+create table adbs893Address (
+Postcode VARCHAR(255),
+Door_Number VARCHAR(255),
+PRIMARY KEY (Postcode, Door_Number),
+Street CHAR(255),
+City CHAR(255),
+Country CHAR(255)
+);
+
+create table adbs893Products (
+Product_ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Product_Name VARCHAR(255),
+Product_Price DECIMAL(10,2),
+Unit_Stock INTEGER(255),
+Units_Ordered INTEGER(255),
+SellerSeller_ID INTEGER(255),
+FOREIGN KEY (SellerSeller_ID) REFERENCES adbs893Seller(Seller_ID)
+);
+
+create table adbs893Seller (
+Seller_ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Company_Name CHAR(255)
+);
+
+create table adbs893Seller_Info (
+Phone INTEGER(15) UNIQUE,
+Email VARCHAR(255) UNIQUE,
+SellerSeller_ID INTEGER(255),
+AddressPostcode VARCHAR(255),
+AddressDoor_Number VARCHAR(255),
+FOREIGN KEY (SellerSeller_ID) REFERENCES adbs893Seller (Seller_ID),
+FOREIGN KEY (AddressPostcode) REFERENCES adbs893Address (Postcode),
+FOREIGN KEY (AddressDoor_Number) REFERENCES adbs893Address(Door_Number)
+);
+
+create table adbs893Shopping_Cart (
+Shopping_CartID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CustomerCustomer_ID INTEGER(255),
+ProductsProduct_ID INTEGER(255),
+MemberMember_ID INTEGER(255),
+FOREIGN KEY (MemberMember_ID) REFERENCES adbs893Member(Member_ID),
+FOREIGN KEY (CustomerCustomer_ID) REFERENCES adbs893Customer(Customer_ID),
+FOREIGN KEY (ProductsProduct_ID) REFERENCES adbs893Products(Product_ID)
+);
+
+create table adbs893Order (
+Order_Date DATE,
+Order_Cost DECIMAL(10,2),
+Shopping_CartShopping_Cart_ID INTEGER(255),
+FOREIGN KEY (Shopping_CartShopping_Cart_ID) REFERENCES adbs893Shopping_Cart(Shopping_Cart_ID)
+);
+
+create table adbs893Shipping_Details (
+Shipping_Date DATE,
+OrderOrder_ID INTEGER(255),
+ShipperShipper_ID INTEGER(255),
+FOREIGN KEY (OrderOrder_ID) REFERENCES adbs893Order (Order_ID),
+FOREIGN KEY (ShipperShipper_ID) REFERENCES adbs893Shipper (Shipper_ID)
+);
+
+create table adbs893Shipper (
+Shipper_ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Phone INTEGER(15) UNIQUE,
+Company VARCHAR(15) UNIQUE
+);
+
+create table adbs893Collection_Details (
+Collection_Date DATE,
+OrderOrder_ID INTEGER(255),
+CollectionCollectionID INTEGER(255),
+FOREIGN KEY (OrderOrder_ID) REFERENCES adbs893Order(Order_ID),
+FOREIGN KEY (CollectionCollectionID) REFERENCES adbs893Collection(Collection_ID)
+);
+
+create table adbs893Collection (
+Collection_ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Phone INTEGER(15) UNIQUE,
+Company VARCHAR(255) UNIQUE,
+AddressPostcode VARCHAR(255),
+AddressDoor_Number VARCHAR(255),
+FOREIGN KEY (AddressPostcode) REFERENCES adbs893Address(Postcode),
+FOREIGN KEY (AddressDoor_Number) REFERENCES adbs893Address(Door_Number)
+);
+
+create table adbs893Billing_Details (
+Card_Number INTEGER(16),
+Card_Expiry DATE,
+Full_Name CHAR(255),
+CVV_Number INTEGER(3),
+MemberMember_ID INTEGER(255),
+FOREIGN KEY (MemberMember_ID) REFERENCES adbs893Member(Member_ID)
+);
+
+
+/* SECTION 2 INSERT STATEMENTS */
+
+INSERT INTO adbs893Customer  SET
+Customer_ID = '1';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '2';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '3';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '4';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '5';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '6';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '7';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '8';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '9';
+INSERT INTO adbs893Customer  SET
+Customer_ID = '10';
+
+
+INSERT INTO adbs893Address  SET
+Postcode ='TF5 9JH', Door_Number ='64', Street ='Wartnaby Road', City ='Admaston', Country ='UK';
+INSERT INTO adbs893Address  SET
+Postcode ='CA5 7PU', Door_Number ='39', Street ='Newport Road', City ='Cardurnock', Country ='UK';
+INSERT INTO adbs893Address  SET
+Postcode ='CA5 7PU', Door_Number ='47', Street ='Newport Road', City ='Cardurnock', Country ='UK';
+INSERT INTO adbs893Address  SET
+Postcode ='48823', Door_Number ='4862', Street ='John  Avenue', City ='East Lansing', Country ='US';
+INSERT INTO adbs893Address  SET
+Postcode ='V5G 4S4', Door_Number ='2855', Street ='James Street', City ='Aldergrove', Country ='Canada';
+INSERT INTO adbs893Address  SET
+Postcode ='V5G 4S4', Door_Number ='2878', Street ='James Street', City ='Aldergrove', Country ='Canada';
+INSERT INTO adbs893Address  SET
+Postcode ='12603', Door_Number ='4694', Street ='Old Dear Lane', City ='Poughkeepsie', Country ='US';
+INSERT INTO adbs893Address  SET
+Postcode ='LD6 2HP', Door_Number ='26', Street ='Cloch Road', City ='St Harmon', Country ='UK';
+INSERT INTO adbs893Address  SET
+Postcode ='DL11 6NZ', Door_Number ='81', Street ='Thorton Street', City ='Hutton Magna', Country ='UK';
+INSERT INTO adbs893Address  SET
+Postcode ='32069', Door_Number ='1863', Street ='Willis Avenue', City ='New Smyrna Beach', Country ='US';
+
+/*Seller*/
+INSERT INTO adbs893Address  SET
+Postcode ='W13 0DD', Door_Number ='34';
+INSERT INTO adbs893Address  SET
+Postcode ='EX7 9QT', Door_Number ='7';
+INSERT INTO adbs893Address  SET
+Postcode ='CO5 9JN', Door_Number ='1';
+INSERT INTO adbs893Address  SET
+Postcode ='GL6 0AX', Door_Number ='8';
+INSERT INTO adbs893Address  SET
+Postcode ='BH14 9PH', Door_Number ='2';
+INSERT INTO adbs893Address  SET
+Postcode ='PE11 4TG', Door_Number ='31';
+INSERT INTO adbs893Address  SET
+Postcode ='WA2 9ST', Door_Number ='22';
+INSERT INTO adbs893Address  SET
+Postcode ='IP28 6SW', Door_Number ='1';
+INSERT INTO adbs893Address  SET
+Postcode ='E1W 2JN', Door_Number ='29';
+INSERT INTO adbs893Address  SET
+Postcode ='NG18 2QL', Door_Number ='8';
+
+
+INSERT INTO adbs893Member  SET
+First_Name ='Gabriel', Last_Name ='Charlton', User_Name ='GabC11', Phone_Number ='07755071359', Email_Address ='GabC1109@gmail.com', Password ='Elephant091', DOB ='1982.12.25', CustomerCustomer_ID ='1', AddressPostcode='TF5 9JH', AddressDoor_Number='64';
+INSERT INTO adbs893Member  SET
+First_Name ='Emily', Last_Name ='Holloway', User_Name ='Emily0179', Phone_Number ='07954855264', Email_Address ='Emily0179@gmail.com', Password ='Cornroll11', DOB ='2001.07.09', CustomerCustomer_ID ='2', AddressPostcode='CA5 7PU', AddressDoor_Number='39';
+INSERT INTO adbs893Member  SET
+First_Name ='Jane', Last_Name ='Rupert', User_Name ='JRsmith1231', Phone_Number ='07921542568', Email_Address ='JRsmith1231@gmail.com', Password ='BongoBongo96', DOB ='1956.04.21', CustomerCustomer_ID ='3', AddressPostcode='CA5 7PU', AddressDoor_Number='47';
+INSERT INTO adbs893Member  SET
+First_Name ='Beverly', Last_Name ='Vassallo', User_Name ='Bevvas122', Phone_Number ='6163077764', Email_Address ='Bevvas1231@gmail.com', Password ='bewafa123', DOB ='1989.11.12', CustomerCustomer_ID ='4', AddressPostcode='48823', AddressDoor_Number='4862';
+INSERT INTO adbs893Member  SET
+First_Name ='Fredrick', Last_Name ='Reese', User_Name ='Fredd12', Phone_Number ='7788081681', Email_Address ='Fredd12@gmail.com', Password ='Frlives5643', DOB ='1995.02.12', CustomerCustomer_ID ='5', AddressPostcode='V5G 4S4', AddressDoor_Number='2855';
+INSERT INTO adbs893Member  SET
+First_Name ='Brandy', Last_Name ='Jones', User_Name ='Bronny1633', Phone_Number ='7788682781', Email_Address ='Brandy9829@gmail.com', Password ='Bronnylookalike23', DOB ='2000.12.12', CustomerCustomer_ID ='6', AddressPostcode='V5G 4S4', AddressDoor_Number='2878';
+INSERT INTO adbs893Member  SET
+First_Name ='Rebecca', Last_Name ='Saunders', User_Name ='RScasual12', Phone_Number ='9144747293', Email_Address ='Rebecca90283@gmail.com', Password ='pacificlover34', DOB ='1998.12.06', CustomerCustomer_ID ='7', AddressPostcode='12603', AddressDoor_Number='4694';
+INSERT INTO adbs893Member  SET
+First_Name ='Lara', Last_Name ='Law', User_Name ='LaraDLaw2142', Phone_Number ='07931111405', Email_Address ='LaraDLaw234@gmail.com', Password ='TrafalgarDWaterLaw', DOB ='1996.09.20', CustomerCustomer_ID ='8', AddressPostcode='LD6 2HP', AddressDoor_Number='26';
+INSERT INTO adbs893Member  SET
+First_Name ='Charlie', Last_Name ='Andrews', User_Name ='Charlie673289', Phone_Number ='07003601288', Email_Address ='CharlieC129@gmail.com', Password ='Chiwawawawa12', DOB ='1992.04.26', CustomerCustomer_ID ='9', AddressPostcode='DL11 6NZ', AddressDoor_Number='81';
+INSERT INTO adbs893Member  SET
+First_Name ='Harvey', Last_Name ='Castro', User_Name ='Harvey15893', Phone_Number ='3866902287', Email_Address ='Harvey.c.12@gmail.com', Password ='Harveypricey99', DOB ='1978.01.23', CustomerCustomer_ID ='10', AddressPostcode='32069', AddressDoor_Number='1863';
+
+
+INSERT INTO adbs893Seller  SET
+Seller_ID = '1', Company_Name ='TReflex';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '2', Company_Name ='Hoovertz';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '3', Company_Name ='MUSTEY';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '4', Company_Name ='ESTIQS';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '5', Company_Name ='RAQIB GOODS';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '6', Company_Name ='RELAXIONES';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '7', Company_Name ='AMINSHAMLETS';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '8', Company_Name ='ProDuctTape';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '9', Company_Name ='XenOIX';
+INSERT INTO adbs893Seller  SET
+Seller_ID = '10', Company_Name ='5ive7even';
+
+
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01895428141', Email ='TReflex1@gmail.com', SellerSeller_ID ='1', AddressPostcode ='W13 0DD', AddressDoor_Number='34';
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01626847612', Email ='Hoovertz@gmail.com', SellerSeller_ID ='2', AddressPostcode ='EX7 9QT', AddressDoor_Number='7';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01376633233', Email ='MUSTEY@gmail.com', SellerSeller_ID ='3', AddressPostcode ='CO5 9JN', AddressDoor_Number='1';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01453600374', Email ='ESTIQS@gmail.com', SellerSeller_ID ='4', AddressPostcode ='GL6 0AX', AddressDoor_Number='8';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01202064027', Email ='RAQIBGOODS@gmail.com', SellerSeller_ID ='5', AddressPostcode ='BH14 9PH', AddressDoor_Number='2';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01775602312', Email ='RELAXIONES@gmail.com', SellerSeller_ID ='6', AddressPostcode ='PE11 4TG', AddressDoor_Number='31';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01925232214', Email ='AMINHAMLETS@gmail.com', SellerSeller_ID ='7', AddressPostcode ='WA2 9ST', AddressDoor_Number='22';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01638388356', Email ='ProDuctTape@gmail.com', SellerSeller_ID ='8', AddressPostcode ='IP28 6SW', AddressDoor_Number='1';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='0208673 7625', Email ='XenOIX@gmail.com', SellerSeller_ID ='9', AddressPostcode ='E1W 2JN', AddressDoor_Number='29';  
+INSERT INTO adbs893Seller_Info  SET
+Phone ='01623281578', Email ='5ive7even@gmail.com', SellerSeller_ID ='10', AddressPostcode ='NG18 2QL', AddressDoor_Number='8';    
+
+
+INSERT INTO adbs893Products  SET
+Product_ID ='1', Product_Name='Mouse and Keyboard', Product_Price ='50.00', Unit_Stock ='78', Units_Ordered='14', SellerSeller_ID ='1';
+INSERT INTO adbs893Products  SET
+Product_ID ='2', Product_Name='Mini Desk Hoover', Product_Price ='10.99', Unit_Stock ='155', Units_Ordered='45', SellerSeller_ID ='2';
+INSERT INTO adbs893Products  SET
+Product_ID ='3', Product_Name='Room Fragrence', Product_Price ='5.49', Unit_Stock ='199', Units_Ordered='124', SellerSeller_ID ='3';
+INSERT INTO adbs893Products  SET
+Product_ID ='4', Product_Name='HDMI CABLE', Product_Price ='5.49', Unit_Stock ='256', Units_Ordered='52', SellerSeller_ID ='4';
+INSERT INTO adbs893Products  SET
+Product_ID ='5', Product_Name='Nuts Mix', Product_Price ='3.00', Unit_Stock ='60', Units_Ordered='15', SellerSeller_ID ='5';
+INSERT INTO adbs893Products  SET
+Product_ID ='6', Product_Name='Massage Chair', Product_Price ='155.99', Unit_Stock ='', Units_Ordered='', SellerSeller_ID ='6';
+INSERT INTO adbs893Products  SET
+Product_ID ='7', Product_Name='Screw Driver Set', Product_Price ='15.49', Unit_Stock ='123', Units_Ordered='46', SellerSeller_ID ='7';
+INSERT INTO adbs893Products  SET
+Product_ID ='8', Product_Name='Duck Tape', Product_Price ='5.99', Unit_Stock ='237', Units_Ordered='154', SellerSeller_ID ='8';
+INSERT INTO adbs893Products  SET
+Product_ID ='9', Product_Name='Zen Desk Figure', Product_Price ='24.99', Unit_Stock ='255', Units_Ordered='0', SellerSeller_ID ='9';
+INSERT INTO adbs893Products  SET
+Product_ID ='10', Product_Name='T-Shirt blue', Product_Price ='10.49', Unit_Stock ='26', Units_Ordered='4', SellerSeller_ID ='10';
+INSERT INTO adbs893Products  SET
+Product_ID ='11', Product_Name='DP CABLE', Product_Price ='5.29', Unit_Stock ='286', Units_Ordered='96', SellerSeller_ID ='4';
+INSERT INTO adbs893Products  SET
+Product_ID ='12', Product_Name='AVI CABLE', Product_Price ='4.99', Unit_Stock ='45', Units_Ordered='12', SellerSeller_ID ='4';
+INSERT INTO adbs893Products  SET
+Product_ID ='13', Product_Name='T-Shirt green', Product_Price ='10.79', Unit_Stock ='26', Units_Ordered='0', SellerSeller_ID ='10';
+INSERT INTO adbs893Products  SET
+Product_ID ='14', Product_Name='T-Shirt red', Product_Price ='10.29', Unit_Stock ='26', Units_Ordered='1', SellerSeller_ID ='10';
+INSERT INTO adbs893Products  SET
+Product_ID ='15', Product_Name='T-Shirt yellow', Product_Price ='10.79', Unit_Stock ='26', Units_Ordered='9', SellerSeller_ID ='10';
+INSERT INTO adbs893Products  SET
+Product_ID ='16', Product_Name='T-Shirt pruple', Product_Price ='10.29', Unit_Stock ='26', Units_Ordered='8', SellerSeller_ID ='10';
+
+
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='1', CustomerCustomer_ID ='10', ProductsProduct_ID ='2', MemberMember_ID = '2';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='2', CustomerCustomer_ID ='9', ProductsProduct_ID ='6', MemberMember_ID = '3';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='3', CustomerCustomer_ID ='8', ProductsProduct_ID ='2', MemberMember_ID = '1';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='4', CustomerCustomer_ID ='7', ProductsProduct_ID ='13', MemberMember_ID = '8';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='5', CustomerCustomer_ID ='6', ProductsProduct_ID ='12', MemberMember_ID = '7';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='6', CustomerCustomer_ID ='5', ProductsProduct_ID ='5', MemberMember_ID = '9';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='7', CustomerCustomer_ID ='4', ProductsProduct_ID ='4', MemberMember_ID = '5';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='8', CustomerCustomer_ID ='3', ProductsProduct_ID ='2', MemberMember_ID = '6';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='9', CustomerCustomer_ID ='2', ProductsProduct_ID ='1', MemberMember_ID = '4';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='10', CustomerCustomer_ID ='1', ProductsProduct_ID ='4', MemberMember_ID = '10';
+INSERT INTO adbs893Shopping_Cart  SET
+Shopping_CartID ='11', CustomerCustomer_ID ='5', ProductsProduct_ID ='6', MemberMember_ID = '9';
+
+
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.10.08', Order_Cost ='4.99', Shopping_CartShopping_Cart_ID ='5';
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.11.03', Order_Cost ='10.99', Shopping_CartShopping_Cart_ID ='8';
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.09.25', Order_Cost ='3.00', Shopping_CartShopping_Cart_ID ='6';
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.10.12', Order_Cost ='155.99', Shopping_CartShopping_Cart_ID ='2';
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.08.25', Order_Cost ='10.99', Shopping_CartShopping_Cart_ID ='3';
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.06.15', Order_Cost ='5.49', Shopping_CartShopping_Cart_ID ='10';
+INSERT INTO adbs893Order  SET
+Order_Date ='2020.09.26', Order_Cost ='10.79', Shopping_CartShopping_Cart_ID ='4';
+
+
+INSERT INTO adbs893Billing_Details  SET
+MemberMember_ID ='1';
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='057723825028', Card_Expiry ='2024.10.01', Full_Name ='Emily Holloway', CVV_Number ='216', MemberMember_ID ='2'; 
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='098952343917', Card_Expiry ='2020.12.01', Full_Name ='Jane Rupert', CVV_Number ='456', MemberMember_ID ='3'; 
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='660444803290', Card_Expiry ='2021.05.01', Full_Name ='Beverly Vasallo', CVV_Number ='721', MemberMember_ID ='4'; 
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='693793870439', Card_Expiry ='2023.02.01', Full_Name ='Fredrick Reese', CVV_Number ='946', MemberMember_ID ='5'; 
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='914027181349', Card_Expiry ='2021.12.01', Full_Name ='Brandy Jones', CVV_Number ='461', MemberMember_ID ='6'; 
+INSERT INTO adbs893Billing_Details  SET
+MemberMember_ID ='7'; 
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='870882248461', Card_Expiry ='2024.03.01', Full_Name ='Lara Law', CVV_Number ='976', MemberMember_ID ='8'; 
+INSERT INTO adbs893Billing_Details  SET
+MemberMember_ID ='9'; 
+INSERT INTO adbs893Billing_Details  SET
+Card_Number ='558712848524', Card_Expiry ='2025.01.01', Full_Name ='Harvey Castro', CVV_Number ='965', MemberMember_ID ='10'; 
+
+DROP TABLE adbs893Collection;
+DROP TABLE adbs893Collection_Details;
+DROP TABLE adbs893Shipper;
+DROP TABLE adbs893Shipping_Details;
+
+                     
+/* SECTION 3 UPDATE STATEMENTS */
+
+UPDATE adbs893Member SET First_Name = 'Gabriella', Last_Name = 'Charleotte', Password = 'Ilikefood11'
+WHERE Member_ID = 1;
+
+UPDATE adbs893Products SET Product_Price = '10.79', Units_Ordered = '11'
+WHERE Product_ID = 16;
+
+UPDATE adbs893Seller_Info SET Email = 'TReflex2021@gmail.co.uk'
+WHERE SellerSeller_ID = 1;
+
+UPDATE adbs893Seller SET Company_Name = 'Relajación'
+WHERE Seller_ID = 6;
+
+
+/* SECTION 4 SINGLE TABLE QUERIES */
+
+/* 1)SELECT ALL ORDERS UNDER £10*/
+   /*SELECT *
+   FROM adbs893Order
+   WHERE Order_Cost < 10;*/
+
+/* 2)FIND THE Seller ProDuctTape*/
+   /* SELECT LOCATE("ProDuctTape", Company_Name)
+   FROM adbs893Seller;   */
+
+/* 3)SHOW ALL THE FIELDS FROM CVV NUMBER THAT ARE NOT EMPTY*/
+   /* SELECT CVV_Number
+   FROM adbs893Billing_Details
+   WHERE CVV_Number IS NOT NULL; */
+
+/* 4)HOW MANY SELLERS ARE THERE IN TOTAL?*/
+   /*SELECT COUNT(Seller_ID)
+   FROM adbs893Seller;  */
+
+/* 5)WHAT IS THE AVERAGE PRODUCT PRICE?*/
+   /*SELECT AVG(Product_Price)
+   FROM adbs893Products;  */
+
+/* 6)WHAT IS THE REVENUE FROM SELLING ON THIS WEBSITE?*/
+   /*SELECT SUM(Order_Cost)
+   FROM adbs893Order;  */
+
+/* 7)WHAT PRODUCT COST MORE THAN £21.99?*/
+   /* SELECT * 
+   FROM adbs893Products 
+   WHERE Product_ID IN (SELECT Product_ID 
+   FROM adbs893Products 
+   WHERE Product_Price > 21.99 and Product_Price < 50.00); */
+
+/* 8)SHOW MEMBER'S NAMES ALPHABETICALLY*/
+   /* SELECT COUNT(Seller_ID), Company_Name
+   FROM adbs893Seller
+   GROUP BY Company_Name; */
+
+/* 9)SHOW THE SELLERS THAT SELL MORE THAN 1 PRODUCT*/
+   /*SELECT COUNT(SellerSeller_ID), SellerSeller_ID
+   FROM adbs893Products
+   GROUP BY SellerSeller_ID
+   HAVING COUNT(Product_ID) > 1
+   ORDER BY COUNT(Product_ID) DESC;*/
+
+/* SECTION 5 MULTIPLE TABLE QUERIES */
+
+
+
+/* 1)WHICH CUSTOMER(S) SPENT MORE THAN £100 ON AN ORDER?*/
+   /*SELECT Order_Cost, Shopping_CartShopping_Cart_ID
+   FROM adbs893Order
+   INNER JOIN adbs893Shopping_Cart ON adbs893Shopping_Cart.Shopping_CartID = adbs893Order.Shopping_CartShopping_Cart_ID
+   WHERE Order_Cost > 100;*/
+
+/* 2)WHICH CUSTOMER(S) SPENT LESS THAN £50 ON AN ORDER?*/
+   /*SELECT Order_Cost, Shopping_CartShopping_Cart_ID
+   FROM adbs893Order
+   INNER JOIN adbs893Shopping_Cart ON adbs893Shopping_Cart.Shopping_CartID = adbs893Order.Shopping_CartShopping_Cart_ID
+   WHERE Order_Cost < 50;*/
+
+/* 3)HOW MANY SHOPPING CARTS CONTAIN A MINI DESK HOOVER*/
+   /*SELECT COUNT(Product_ID)
+   FROM adbs893Products
+   INNER JOIN adbs893Shopping_Cart ON adbs893Shopping_Cart.ProductsProduct_ID = adbs893Products.Product_ID
+   WHERE Product_Name = "Mini Desk Hoover";*/
+
+/* 4)WHICH MEMBERS HAVE A PRODUCTS IN THEIR BASKET AND HAVE THEIR CARD DETAILS SAVED ON THE SYSTEM?*/
+   /*SELECT Member_ID, User_Name
+   FROM adbs893Member
+   INNER JOIN adbs893Shopping_Cart ON adbs893Shopping_Cart.MemberMember_ID = adbs893Member.Member_ID
+   INNER JOIN adbs893Billing_Details ON adbs893Billing_Details.MemberMember_ID = adbs893Member.Member_ID
+   WHERE CVV_Number IS NOT NULL AND adbs893Billing_Details.MemberMember_ID = adbs893Member.Member_ID;*/ 
+
+						
+/* 5)WHAT COMPANY IS LOCATED IN POSTCODE AREA 'EX7 9QT'*/
+   /*SELECT Company_Name
+   FROM adbs893Seller
+   INNER JOIN adbs893Seller_Info ON adbs893Seller_Info.SellerSeller_ID = adbs893Seller.Seller_ID
+   WHERE AddressPostcode = "EX7 9QT";*/
+
+
+/* 6)WHICH SELLER(S) SELLS PRODUCTS VALUED HIGHER THAN THE AVERAGE PRODUCT PRICE(£21.30)?*/
+   /*SELECT Company_Name, Seller_ID
+   FROM adbs893Seller
+   INNER JOIN adbs893Products ON adbs893Products.SellerSeller_ID = adbs893Seller.Seller_ID
+   WHERE Product_Price > 21.30;*/ 
+
+
+/* SECTION 6 DELETE ROWS (make sure the SQL is commented out in this section)
+
+DELETE FROM adbs893Member WHERE Member_ID = 10;
+DELETE FROM adbs893Seller WHERE Company_Name = '5ive7even';
+DELETE FROM adbs893Products WHERE Product_Name = 'AVI CABLE';
+DELETE FROM adbs893Billing_Details WHERE Card_Expiry = '2020.12.01';
+
+*/
+
+/* SECTION 6 DROP TABLES (make sure the SQL is commented out in this section)
+
+DROP TABLE adbs893Collection;
+DROP TABLE adbs893Collection_Details;
+DROP TABLE adbs893Shipper;
+DROP TABLE adbs893Shipping_Details;
+
+
+*/

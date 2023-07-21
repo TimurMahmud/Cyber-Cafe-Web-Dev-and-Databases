@@ -1,0 +1,117 @@
+
+
+<!DOCTYPE html>
+<head>
+   <title>About</title>
+   <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="style.css">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <!-- Nuno Alberto, Plush Toy Vending Machine,unsplash,Published on March 14, 2018, https://unsplash.com/photos/ZoNKwyNpcNE. -->
+   <!-- Lysander Yuen, Four people playing arcade games,unsplash,Published on November 13, 2017, https://unsplash.com/photos/sEvXeIUh1t4 -->
+   <!-- Ciaran O'Brien, game arcade room photo,unsplash,Published on August 7, 2018, https://unsplash.com/photos/YpRj5w60zBY -->
+   <!-- Ciaran O'Brien, people playing arcade games,unsplash,Published on July 25, 2018, https://unsplash.com/photos/ihb1YmHlpuQ -->
+</head>
+<body>
+   <header>
+      <div class="wrapper">
+         <div class="logo">
+            <img src="images/logo.png" alt="">
+         </div>
+         <ul class="navigation">
+            <a href="home.html">
+               <li>Home</li>
+            </a>
+            <a href="about.html">
+               <li>About</li>
+            </a>
+            <a href="contact.html">
+               <li>Contact</li>
+            </a>
+            <a href="booking.html">
+               <li>Booking</li>
+            </a>
+            <a href="login.html">
+               <li>Login</li>
+            </a>
+            <a href="register.html">
+               <li>Register</li>
+            </a>
+         </ul>
+      </div>
+      <div class="title">
+         <div class = "title-wrapper">
+            <h1>
+               About Us
+            </h1>
+         </div>
+      </div>
+   </header>
+   <main>
+      <p>Non-Player Cafe is the first ever AI-driven robot cafe with old-school arcade machines.
+         The fusion of the past and future brings a unique feel to the cafe and can be enjoyed by the young and elderly.
+         Here at Non-Player Cafe we aim to bring joy and nostalgia to the elderly and happiness and excitement for the youth.
+         Feel free to Book a timeslot using the booking option on the navigaiton bar.
+         Game on!
+      </p>
+      <!-- *Title: How TO - Slideshow
+         *    Author: W3Schools.com
+         *    Date: 2021
+         *    Availability: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
+      <div class="slideshow-container">
+         <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="images/1.jpg" style="width:100%; height:400px">
+            <div class="text">Music Machines</div>
+         </div>
+         <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="images/2.jpg" style="width:100%; height:400px">
+            <div class="text">Claw Machines</div>
+         </div>
+         <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="images/3.jpg" style="width:100%; height:400px">
+            <div class="text">Arcade Machines</div>
+         </div>
+         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+         <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br>
+      <div style="text-align:center">
+         <span class="dot" onclick="currentSlide(1)"></span> 
+         <span class="dot" onclick="currentSlide(2)"></span> 
+         <span class="dot" onclick="currentSlide(3)"></span> 
+      </div>
+      <script>
+         var slideIndex = 1;
+         showSlides(slideIndex);
+         
+         function plusSlides(n) {
+           showSlides(slideIndex += n);
+         }
+         
+         function currentSlide(n) {
+           showSlides(slideIndex = n);
+         }
+         
+         function showSlides(n) {
+           var i;
+           var slides = document.getElementsByClassName("mySlides");
+           var dots = document.getElementsByClassName("dot");
+           if (n > slides.length) {slideIndex = 1}    
+           if (n < 1) {slideIndex = slides.length}
+           for (i = 0; i < slides.length; i++) {
+               slides[i].style.display = "none";  
+           }
+           for (i = 0; i < dots.length; i++) {
+               dots[i].className = dots[i].className.replace(" active", "");
+           }
+           slides[slideIndex-1].style.display = "block";  
+           dots[slideIndex-1].className += " active";
+         }
+      </script>               
+   </main>
+</body>
+</html>
+
